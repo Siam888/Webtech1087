@@ -4,7 +4,7 @@ import { jsonResponse, useServer } from './helpers.js';
 
 const getBaseUrl = useServer();
 
-test('ruta de salut bazată pe cale decodează și taie spațiile din ultimul segment', async () => {
+test('ruta bazată pe cale decodează și taie spațiile din ultimul segment', async () => {
   assert.deepEqual(await jsonResponse(await fetch(`${getBaseUrl()}/api/greetings/%20Ada%20Lovelace%20`)), {
     status: 200,
     contentType: 'application/json',
@@ -12,7 +12,7 @@ test('ruta de salut bazată pe cale decodează și taie spațiile din ultimul se
   });
 });
 
-test('ruta de salut bazată pe cale respinge un segment decodat gol', async () => {
+test('ruta bazată pe cale respinge un segment decodat gol', async () => {
   assert.deepEqual(await jsonResponse(await fetch(`${getBaseUrl()}/api/greetings/%20%20`)), {
     status: 400,
     contentType: 'application/json',
